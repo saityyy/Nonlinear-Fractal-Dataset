@@ -1,0 +1,1 @@
+python fractal_renderer/ifs_search.py --rate=0.1 --category=10 --numof_point=100000  --save_dir='./data' --function_type=nonlinear
