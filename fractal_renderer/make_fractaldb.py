@@ -23,7 +23,7 @@ def conf():
     parser.add_argument('--pad_size_y', default=6, type=int, help='padding size y')
     parser.add_argument('--iteration', default=100000, type=int, help='iteration')
     parser.add_argument('--draw_type', default='patch_gray', type=str, help='{point, patch, gaussian}_{gray, color}')
-    parser.add_argument('--weight_csv', default='./fractal_renderer/weights/weights_0.1.csv', type=str, help='weight parameter')
+    parser.add_argument('--weight_csv', default='./fractal_renderer/weights/weights_0.2.csv', type=str, help='weight parameter')
     parser.add_argument('--instance', default=10, type=int, help='#instance, 10 => 1000 instance, 100 => 10,000 instance per category')
     args = parser.parse_args()
     return args
@@ -40,7 +40,6 @@ if __name__ == "__main__":
     csv_names = os.listdir(args.load_root)
     csv_names.sort()
     weights = np.genfromtxt(args.weight_csv, dtype=np.str, delimiter=',')
-
     if not os.path.exists(os.path.join(args.save_root)):
         os.mkdir(os.path.join(args.save_root))
 
@@ -97,6 +96,27 @@ if __name__ == "__main__":
                                              weight_a=float(weight[0]), weight_b=float(weight[1]), weight_c=float(weight[2]), weight_d=float(weight[3]), weight_e=float(weight[4]), weight_f=float(weight[5]))
                     generators.calculate(args.iteration)
                     generators.draw_patch(args.image_size_x, args.image_size_y, args.pad_size_x, args.pad_size_y, 'color', count)
+            elif args.draw_type == 'gaussian_gray':
+                for count in range(args.instance):
+                    generators = ifs_function(prev_x=0.0, prev_y=0.0, save_root=args.save_root,
+                                              fractal_name=name, fractal_weight_count=padded_fractal_weight)
+                    params = np.genfromtxt(os.path.join(args.load_root, csv_name), dtype=np.str, delimiter=',')
+                    for param in params:
+                        generators.set_param(float(param[0]), float(param[1]), float(param[2]), float(param[3]), float(param[4]), float(param[5]), float(param[6]),
+                                             weight_a=float(weight[0]), weight_b=float(weight[1]), weight_c=float(weight[2]), weight_d=float(weight[3]), weight_e=float(weight[4]), weight_f=float(weight[5]))
+                    generators.calculate(args.iteration)
+                    generators.gaussian_blur(args.image_size_x, args.image_size_y, args.pad_size_x, args.pad_size_y, 'gray', count)
+
+            elif args.draw_type == 'gaussian_color':
+                for count in range(args.instance):
+                    generators = ifs_function(prev_x=0.0, prev_y=0.0, save_root=args.save_root,
+                                              fractal_name=name, fractal_weight_count=padded_fractal_weight)
+                    params = np.genfromtxt(os.path.join(args.load_root, csv_name), dtype=np.str, delimiter=",")
+                    for param in params:
+                        generators.set_param(float(param[0]), float(param[1]), float(param[2]), float(param[3]), float(param[4]), float(param[5]), float(param[6]),
+                                             weight_a=float(weight[0]), weight_b=float(weight[1]), weight_c=float(weight[2]), weight_d=float(weight[3]), weight_e=float(weight[4]), weight_f=float(weight[5]))
+                    generators.calculate(args.iteration)
+                    generators.gaussian_blur(args.image_size_x, args.image_size_y, args.pad_size_x, args.pad_size_y, 'color', count)
             fractal_weight += 1
 
     endtime = time.time()

@@ -34,7 +34,7 @@ def generator(param, function_type):
         generators.set_param(float(param[0]), float(param[1]), float(param[2]), float(param[3]), float(param[4]), float(param[5]), float(param[6]))
     generators.calculate(args.numof_point)  # class
     img = generators.draw_point(512, 512, 6, 6, 'gray', 0)  # image (x,y pad x,y)
-    return img, generators.nonlinear_function.__name__  # return by (cv2 , str)
+    return img, generators.function_V.__name__  # return by (cv2 , str)
 
 
 if __name__ == "__main__":

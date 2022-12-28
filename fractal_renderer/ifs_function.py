@@ -9,6 +9,7 @@ import math
 import random
 import numpy as np
 from PIL import Image
+from scipy.ndimage import gaussian_filter
 from nonlinear_functions import functions_dict
 
 
@@ -154,6 +155,27 @@ class ifs_function():
             trans_image.save(os.path.join(self.save_root, self.fractal_name, self.fractal_name + "_" +
                              self.fractal_weight_count + "_count_" + str(count) + "_flip" + str(trans_type) + ".png"))
         trans_image.close()
+        image.close()
+
+    def gaussian_blur(self, image_x, image_y, pad_x, pad_y, set_color, count):
+        self.__rescale(image_x, image_y, pad_x, pad_y)
+        image = np.array(Image.new("RGB", (image_x, image_y)))
+        for i in range(len(self.xs)):
+            if set_color == "color":
+                image[self.ys[i], self.xs[i], :] = self.convert_color(i, 128)
+            else:
+                image[self.ys[i], self.xs[i], :] = 127, 127, 127
+        image = Image.fromarray(image)
+
+        image = image.transpose(Image.FLIP_TOP_BOTTOM)
+        np.random.seed(seed=count)
+        sigma = 4.0*np.random.rand()
+        for trans_type in range(4):
+            gaussian_image = Image.fromarray(gaussian_filter(image, sigma))
+            trans_image = self.__transpose(gaussian_image, trans_type)
+            trans_image.save(os.path.join(self.save_root, self.fractal_name, self.fractal_name + "_" +
+                                          self.fractal_weight_count + "_count_" + str(count) + "_flip" + str(trans_type) + ".png"))
+            # trans_image.close()
         image.close()
 
     def convert_color(self, color, n_div):
