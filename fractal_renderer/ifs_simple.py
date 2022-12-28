@@ -7,7 +7,7 @@ import math
 import random
 import numpy as np
 from PIL import Image
-from nonlinear_functions import functions_list
+from nonlinear_functions import functions_dict
 
 
 def linear(x, y):
@@ -29,7 +29,7 @@ class ifs_function():
         # Calculate select function
         self.temp_proba = 0.0
         if function_type == "nonlinear":
-            self.nonlinear_function = np.random.choice(functions_list)
+            self.nonlinear_function = np.random.choice(list(functions_dict.values()))
         else:
             self.nonlinear_function = linear
 

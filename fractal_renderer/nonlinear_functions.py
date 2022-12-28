@@ -121,3 +121,24 @@ functions_list = [linear,
                   eyefish,
                   bubble,
                   cylinder]
+
+functions_dict = {
+    "linear": linear,
+    "sinusoidal": sinusoidal,
+    "spherical": spherical,
+    "polar": polar,
+    "hand_kerchief": hand_kerchief,
+    "heart": heart,
+    "disc": disc,
+    "spiral": spiral,
+    "hyperbolic": hyperbolic,
+    "diamond": diamond,
+    "ex": ex,
+    "bent": bent,
+    "fisheye": fisheye,
+    "power": power,
+    "eyefish": eyefish,
+    "bubble": bubble,
+    "cylinder": cylinder
+
+}
