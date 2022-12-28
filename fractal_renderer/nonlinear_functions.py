@@ -104,24 +104,6 @@ def cylinder(x, y):
     return np.sin(x), y
 
 
-functions_list = [linear,
-                  sinusoidal,
-                  spherical,
-                  polar,
-                  hand_kerchief,
-                  heart,
-                  disc,
-                  spiral,
-                  hyperbolic,
-                  diamond,
-                  ex,
-                  bent,
-                  fisheye,
-                  power,
-                  eyefish,
-                  bubble,
-                  cylinder]
-
 functions_dict = {
     "linear": linear,
     "sinusoidal": sinusoidal,

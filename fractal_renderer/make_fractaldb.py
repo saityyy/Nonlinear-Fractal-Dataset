@@ -23,7 +23,7 @@ def conf():
     parser.add_argument('--pad_size_y', default=6, type=int, help='padding size y')
     parser.add_argument('--iteration', default=100000, type=int, help='iteration')
     parser.add_argument('--draw_type', default='patch_gray', type=str, help='{point, patch, gaussian}_{gray, color}')
-    parser.add_argument('--weight_csv', default='./weights/weights_0.1.csv', type=str, help='weight parameter')
+    parser.add_argument('--weight_csv', default='./fractal_renderer/weights/weights_0.1.csv', type=str, help='weight parameter')
     parser.add_argument('--instance', default=10, type=int, help='#instance, 10 => 1000 instance, 100 => 10,000 instance per category')
     args = parser.parse_args()
     return args

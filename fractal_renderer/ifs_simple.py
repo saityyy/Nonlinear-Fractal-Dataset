@@ -29,9 +29,9 @@ class ifs_function():
         # Calculate select function
         self.temp_proba = 0.0
         if function_type == "nonlinear":
-            self.nonlinear_function = np.random.choice(list(functions_dict.values()))
+            self.function_V = np.random.choice(list(functions_dict.values()))
         else:
-            self.nonlinear_function = linear
+            self.function_V = linear
 
     def set_param(self, a, b, c, d, e, f, proba, **kwargs):
         # Initial parameters & select function
@@ -53,7 +53,7 @@ class ifs_function():
                 if rand[i] <= select_function[j]:
                     next_x = prev_x * function[j]["a"] + prev_y * function[j]["b"] + function[j]["e"]
                     next_y = prev_x * function[j]["c"] + prev_y * function[j]["d"] + function[j]["f"]
-                    next_x, next_y = self.nonlinear_function(next_x, next_y)
+                    next_x, next_y = self.function_V(next_x, next_y)
                     break
             self.xs.append(next_x), self.ys.append(next_y)
             prev_x = next_x
