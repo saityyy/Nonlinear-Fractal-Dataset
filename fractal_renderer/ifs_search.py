@@ -41,14 +41,14 @@ if __name__ == "__main__":
     threshold = args.rate
     np.random.seed(1)
     class_num = 0
-    data_root_dir = os.path.join(args.save_dir, "rate{}_cat{}_{}".format(args.rate, args.category, args.function_type))
+    data_root_dir = os.path.join(args.save_dir, "rate{}_category{}_{}".format(args.rate, args.category, args.function_type))
     if os.path.exists(data_root_dir) == False:
         os.makedirs(data_root_dir)
-    img_dir = os.path.join(data_root_dir, 'rate' + str(args.rate) + '_category' + str(args.category))
+    img_dir = os.path.join(data_root_dir, "image")
     if os.path.exists(img_dir) == False:
         os.makedirs(img_dir)
 
-    cat_dir = os.path.join(data_root_dir, 'csv_rate' + str(args.rate) + '_category' + str(args.category))
+    cat_dir = os.path.join(data_root_dir, "csv")
     if os.path.exists(cat_dir) == False:
         os.makedirs(cat_dir)
 
