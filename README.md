@@ -6,7 +6,7 @@ In this repository, you can make an improved dataset based on FractalDB. The cha
 - Each time a fractal image is generated, the sigma value is randomly determined and Gaussian Blur is applied based on it.
 
 The execution command with these settings applied is described in `./exe.sh`.  
-Details of these methods and experiments using them are described in the following papers: Hiroki Saito, "Proposal of an Extension Pre-trained Models of Image Recognition Based on FractalDB" [[PDF]](https://github.com/saityyy/Nonlinear-Fractal-Dataset/blob/main/nonlinear_fractal.pdf)
+Details of these methods and experiments using them are described in the following papers: Hiroki Saito, "Proposal of an Extension Pre-trained Models of Image Recognition Based on FractalDB" [[PDF]](https://github.com/saityyy/Nonlinear-Fractal-Dataset/blob/main/paper.pdf)
 
 # FractalDB
 
